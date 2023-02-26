@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type='text' id='usernameText' placeholder='username'><br>
+<input type='email' id='emailText' placeholder='email'><br>
+<input type='password' id='passwordText' placeholder='password'><br>
+<input type='password' id='rePasswordText' placeholder='retype password'><br>
+<button id='registrationButton' onclick="register()">register</button><br>
+<script>
+    function register()
+    {
+        if(validateDetails() == true)
+        {
+            window.location.href="page2.html";
+        }
+    }
+
+    function validateDetails()
+    {
+        /*1.	אורך סיסמא : [10]
+        2.	סיסמא מורכבת : [אותיות גדולות , קטנות, ספרות, תווים מיוחדים]
+        3.	היסטוריה : [3 פעמים]
+        4.	מניעת שימוש במילון [.....]
+        5.	מספר ניסיונות בשלב ה Login [3]‏*/
+        let password = document.getElementById("passwordText");
+        if(password.value.length < 10)
+        {
+            alert("password must be at least 10 characters long");
+            return false;
+        }
+        if(password.value !== document.getElementById("rePasswordText").value)
+        {
+            alert("password does not match retype");
+            return false;
+        }
+        if (badPasswords.includes(password.value))
+        {
+            alert("password is too weak");
+            return false;
+        }
+        return true;
+    }
+
+    const badPasswords = ["mypassword", "password1234", "1234567890", "0987654321"];
+</script>
+</body>
+</html>
